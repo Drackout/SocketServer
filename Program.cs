@@ -20,8 +20,8 @@ namespace SocketServer
         private static int maxRounds = 5;
         private static int maxPlayers = 2;
         private static int assignedId;
-        private static int totalBytesSentThisRound = 0;
-        private static int totalBytesReceivedThisRound = 0;
+        private static int totalBytesSentRound = 0;
+        private static int totalBytesReceivedRound = 0;
 
         private static List<Entity> playersPrefabInfo = new List<Entity>()
         {
@@ -93,7 +93,6 @@ namespace SocketServer
                             string msg = Encoding.UTF8.GetString(commandBytes);
                             //Console.WriteLine($"Received (p{playerId}): {msg}");
 
-                            ////////////////////////
                             try
                             {
                                 //get json to.. id, command, extra
@@ -152,55 +151,10 @@ namespace SocketServer
                                         SendMessage(client, "Unknown action");
                                         continue;
                                 }
-
-                                //.........
                             }
                             catch (Exception e)
                             {
                                 Console.WriteLine("Failed to deserialize JSON: " + e.Message);
-                            }
-                            ////////////////////////
-
-
-                            //ID:Action:Extra - 1:move:up, 1:launch, 1:attack
-                            string[] parts = msg.Split(':');
-                            if (parts.Length < 2)
-                            {
-                                Console.WriteLine($"Invalid message received (< 2)");
-                                continue;
-                            }
-
-
-                            if (playerId == -1)
-                            {
-                                playerId = Convert.ToInt16(parts[0]);
-                                if (!playerIds.Contains(playerId))
-                                {
-                                    playerIds.Add(playerId);
-                                }
-                            }
-                            if (parts[1] == "launch" && playerId == 1 && !gameStarted && clients.Count == maxPlayers)
-                            {
-                                gameStarted = true;
-                                Broadcast($"Game started! It's player{playerIds[currentTurn]} Turn:{playerIds[currentTurn]}");
-                                continue;
-                            }
-                            else if (parts[1] == "launch" && playerId == 1 && !gameStarted && clients.Count != maxPlayers)
-                            {
-                                Send(client, $"Need more players - {clients.Count}/{maxPlayers}");
-                                continue;
-                            }
-
-                            // SEND WHEN reached
-                            if (!gameStarted && clients.Count == maxPlayers)
-                            {
-                                BroadcastMessage("Waiting for Host to start the Game.");
-                            }
-
-                            if (parts[1] == "launch" && gameStarted)
-                            {
-                                Send(client, "Game already started");
-                                continue;
                             }
                         }
                     }
@@ -225,7 +179,7 @@ namespace SocketServer
                 try
                 {
                     int nBytes = cliSocket.Receive(data);
-                    totalBytesReceivedThisRound += nBytes;
+                    totalBytesReceivedRound += nBytes;
                     if (accountForLittleEndian && (!BitConverter.IsLittleEndian))
                         Array.Reverse(data);
                     return nBytes;
@@ -267,13 +221,13 @@ namespace SocketServer
                 byte[] data = Encoding.UTF8.GetBytes(json);
                 byte[] dataLen = BitConverter.GetBytes((UInt32)data.Length);
 
-                Console.WriteLine("Send JSON: " + json);
+                //Console.WriteLine("Send JSON: " + json);
 
                 try
                 {
                     client.Send(dataLen);
                     client.Send(data);
-                    totalBytesSentThisRound += data.Length;
+                    totalBytesSentRound += data.Length;
                 }
                 catch (Exception e)
                 {
@@ -303,7 +257,7 @@ namespace SocketServer
                 byte[] data = Encoding.UTF8.GetBytes(json);
                 byte[] dataLen = BitConverter.GetBytes((UInt32)data.Length);
 
-                Console.WriteLine("Broadcasting JSON: " + json);
+                //Console.WriteLine("Broadcasting JSON: " + json);
 
                 foreach (Socket client in clients)
                 {
@@ -311,7 +265,7 @@ namespace SocketServer
                     {
                         client.Send(dataLen);
                         client.Send(data);
-                        totalBytesSentThisRound += data.Length;
+                        totalBytesSentRound += data.Length;
                     }
                     catch (Exception e)
                     {
@@ -418,7 +372,6 @@ namespace SocketServer
 
             static void SEndTurn()
             {
-                Console.WriteLine($"Round{rounds}, Sent: {totalBytesSentThisRound} bytes, Received: {totalBytesReceivedThisRound} bytes");
     
                 BroadcastMessage($"Player{currentTurn + 1} - finished his turn");
                 playersPrefabInfo[currentTurn].refilEnergy();
@@ -429,6 +382,7 @@ namespace SocketServer
 
                 if (currentTurn == 0)
                 {
+                    Console.WriteLine($"Round{rounds}, Sent: {totalBytesSentRound} bytes, Received: {totalBytesReceivedRound} bytes");
                     rounds++;
                     BroadcastMessage($"--- Round {rounds} ---");
                 }
