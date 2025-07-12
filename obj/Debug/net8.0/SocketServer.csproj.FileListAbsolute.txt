@@ -1,0 +1,15 @@
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\bin\Debug\net8.0\SocketServer.exe
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\bin\Debug\net8.0\SocketServer.deps.json
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\bin\Debug\net8.0\SocketServer.runtimeconfig.json
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\bin\Debug\net8.0\SocketServer.dll
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\bin\Debug\net8.0\SocketServer.pdb
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\obj\Debug\net8.0\SocketServer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\obj\Debug\net8.0\SocketServer.AssemblyInfoInputs.cache
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\obj\Debug\net8.0\SocketServer.AssemblyInfo.cs
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\obj\Debug\net8.0\SocketServer.csproj.CoreCompileInputs.cache
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\obj\Debug\net8.0\SocketServer.sourcelink.json
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\obj\Debug\net8.0\SocketServer.dll
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\obj\Debug\net8.0\refint\SocketServer.dll
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\obj\Debug\net8.0\SocketServer.pdb
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\obj\Debug\net8.0\SocketServer.genruntimeconfig.cache
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\obj\Debug\net8.0\ref\SocketServer.dll

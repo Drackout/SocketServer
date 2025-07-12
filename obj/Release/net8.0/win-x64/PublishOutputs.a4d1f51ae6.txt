@@ -1,0 +1,2 @@
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\bin\Release\net8.0\win-x64\publish\SocketServer.pdb
+C:\Users\BlankyCat\Desktop\LP1ConsoleTemplate\RedesSocketServer\SocketServer\bin\Release\net8.0\win-x64\publish\SocketServer.exe
